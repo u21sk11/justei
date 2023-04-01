@@ -1,0 +1,32 @@
+//Duota: Isivaizduoju, jog mums duoda 2d array (masyva), kitaip tariant masyvo masyva
+//Suskaiciuoti: auksciausia naudingumo bala is vysu
+const perfMark = (shots) => {
+  //cia laikysime naudingumo bala
+  let topPerfMark = null;
+  let topPlayer = null;
+  //einame per krepsininkus naudodami masyvo ilgi (taip pat sita galima daryti naudojant duota n)
+  for (let i = 0; i < shots.length; i++) {
+    //Skaiciuojame naudingumo taskus kiekvienam zaidejui
+    const playerShotsArr = shots[i];
+    //Visi taskai - dvidataskiai + tritaskiai + baudos
+    let playerPoints =
+      playerShotsArr[1] * 2 + playerShotsArr[3] * 3 + playerShotsArr[5] * 1;
+    //Visi metimai
+    let playerMisses =
+      playerShotsArr[0] -
+      playerShotsArr[1] +
+      playerShotsArr[2] -
+      playerShotsArr[3] +
+      playerShotsArr[4] -
+      playerShotsArr[5];
+    //Zaidejo naudingumo balas
+    let playerPerfMark = playerPoints - playerMisses;
+
+    if (playerPerfMark > topPerfMark || topPerfMark === null) {
+      topPerfMark = playerPerfMark;
+      topPlayer = i + 1;
+    }
+  }
+
+  return topPlayer;
+};
